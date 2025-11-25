@@ -20,6 +20,30 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 #keysCount {font-size:18px; font-weight:700; color:#00ffff; text-shadow:0 0 8px #00ffff; margin-left:20px; text-align:center;}
 #keysIcon {width:32px; height:32px; cursor:pointer; margin-right:8px;}
 
+/* Przycisk WRÓĆ - nowy styl */
+.back-btn {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  padding: 10px 20px;
+  background: #00cc66;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(0, 204, 102, 0.7);
+  transition: all 0.3s;
+}
+
+.back-btn:hover {
+  background: #00ff80;
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 128, 0.9);
+}
+
 /* Awatar - POWIĘKSZONY 4x i PRZESUNIĘTY NIŻEJ */
 .avatar-container {
   position: fixed;
@@ -763,23 +787,30 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 /* Sortowanie w ekwipunku */
 .inventory-sort {
-  margin: 10px 0;
+  margin: 30px 0 20px 0; /* Większy margines górny, żeby nie nachodził na pasek levela */
   text-align: center;
 }
 
 .sort-btn {
   padding: 8px 16px;
   margin: 0 5px;
-  background: #333;
+  background: #ff6600; /* Pomarańczowy kolor */
   color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.3s;
+  font-weight: 700;
+}
+
+.sort-btn:hover {
+  background: #ff8833;
+  transform: scale(1.05);
 }
 
 .sort-btn.active {
   background: #ff3399;
+  box-shadow: 0 0 10px rgba(255, 51, 153, 0.5);
 }
 
 /* Kolekcja */
@@ -953,6 +984,12 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     width: 80px;
     height: 80px;
   }
+  .back-btn {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 10px;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1003,6 +1040,12 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     margin-right: 0;
     margin-bottom: 10px;
   }
+  .back-btn {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 10px;
+  }
 }
 </style>
 </head>
@@ -1023,6 +1066,9 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
   </div>
   <div id="balance">1 000 zł</div>
 </header>
+
+<!-- Przycisk WRÓĆ - teraz stały w prawym górnym rogu -->
+<button class="back-btn" onclick="backToMenu()" style="display:none;" id="backButton">WRÓĆ</button>
 
 <!-- AWATAR - TERAZ JEST TU, POD HEADEREM PO LEWEJ -->
 <div class="avatar-container">
@@ -1054,7 +1100,6 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <!-- CASES SCREEN -->
 <div id="casesScreen" style="display:none;text-align:center;padding-top:80px;">
-  <button class="btn-big" onclick="backToMenu()">WRÓĆ</button>
   <h2 style="color:#ff3399;margin-top:20px">WYBIERZ SKRZYNKĘ</h2>
   <div style="margin-top:12px">
     <div class="case-card" onclick="openCase(1)"><img src="https://i.postimg.cc/8zjR0TkZ/sdfsdfdfssdfsdf-Photoroom.png"><div class="case-name">PENTO-CASE</div><div class="case-price">DARMOWA</div></div>
@@ -1071,7 +1116,6 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <!-- BATTLE / CASE BATTLE SCREEN -->
 <div id="battleScreen" style="display:none;padding-top:80px;text-align:center;">
-  <button class="btn-big" onclick="backToMenu()">WRÓĆ</button>
   <h2 style="color:#ff3399;margin-top:8px">CASE BATTLE — Lokalnie vs Boty</h2>
 
   <div style="margin:10px">
@@ -1106,7 +1150,6 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <!-- SHOP SCREEN -->
 <div id="shopScreen" style="display:none;padding-top:80px;text-align:center;">
-  <button class="btn-big" onclick="backToMenu()">WRÓĆ</button>
   <h2 style="color:#ff3399;margin-top:20px">SKLEP</h2>
   <div style="margin-top:12px" id="shopItems">
     <!-- Shop items will be generated here -->
@@ -1115,7 +1158,6 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <!-- EVENT SHOP SCREEN -->
 <div id="eventShopScreen" style="display:none;padding-top:80px;text-align:center;">
-  <button class="btn-big" onclick="backToMenu()">WRÓĆ</button>
   <h2 style="color:#ffcc00;margin-top:20px">SKLEP EVENTOWY</h2>
   <div class="small" style="margin-bottom:20px;">Punkty eventowe zdobywasz tylko za otwieranie skrzynek (Case Battle się nie liczy)</div>
   <div style="margin-top:12px" id="eventShopItems">
@@ -1125,7 +1167,6 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <!-- EKWIPUNEK -->
 <div id="inventory" style="padding:18px;text-align:center;display:none;">
-  <button class="btn-big" onclick="backToMenu()">WRÓĆ</button>
   <h3 style="color:#ff3399">Twój Ekwipunek</h3>
   
   <!-- Sortowanie -->
@@ -1141,7 +1182,6 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <!-- KOLEKCJA -->
 <div id="collectionScreen" style="display:none;padding:18px;text-align:center;">
-  <button class="btn-big" onclick="backToMenu()">WRÓĆ</button>
   <h3 style="color:#ff3399">Twoja Kolekcja</h3>
   <div class="small" style="margin-bottom:20px;">Zbieraj przedmioty z każdej skrzynki, aby ukończyć kolekcje i zdobywać klucze!</div>
   
@@ -1152,6 +1192,19 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 
 <script>
 /* ---------------------- STAN APLIKACJI ---------------------- */
+// RESET BALANSU TYLKO RAZ - dla nowych graczy
+const isFirstVisit = !localStorage.getItem("pentoFirstVisit");
+if (isFirstVisit) {
+  localStorage.setItem("pentoFirstVisit", "true");
+  localStorage.setItem("pentoBalance", "1000");
+  localStorage.setItem("pentoInventory", "[]");
+  localStorage.setItem("pentoLevel", "1");
+  localStorage.setItem("pentoXP", "0");
+  localStorage.setItem("pentoEventPoints", "0");
+  localStorage.setItem("pentoKeys", "0");
+  localStorage.setItem("pentoCollection", "{}");
+}
+
 let balance = parseInt(localStorage.getItem("pentoBalance")) || 1000;
 let inventory = JSON.parse(localStorage.getItem("pentoInventory")) || [];
 let playerLevel = parseInt(localStorage.getItem("pentoLevel")) || 1;
@@ -1168,6 +1221,7 @@ let inventorySortOrder = 'none'; // 'none', 'asc', 'desc'
 const balanceEl = document.getElementById('balance');
 const eventPointsEl = document.getElementById('eventPoints');
 const keysCountEl = document.getElementById('keysCount');
+const backButton = document.getElementById('backButton');
 
 function updateBalance(){ 
   balanceEl.textContent = balance.toLocaleString() + ' zł'; 
@@ -1340,6 +1394,36 @@ function changeAvatar() {
   }
 }
 
+/* ---------------------- ZARZĄDZANIE ANIMACJAMI ---------------------- */
+function changeAvatarAnimation() {
+  // Pobierz wszystkie zakupione animacje
+  const purchasedAnimations = avatarAnimations.filter(anim => 
+    localStorage.getItem(`pentoAnimation_${anim.type}`) === 'purchased'
+  );
+  
+  if (purchasedAnimations.length === 0) {
+    alert('Nie masz żadnych zakupionych animacji! Odwiedź sklep eventowy.');
+    return;
+  }
+  
+  let animationList = 'Wybierz animację:\n\n';
+  purchasedAnimations.forEach((anim, index) => {
+    animationList += `${index + 1}. ${anim.name} ${currentAvatarAnimation === anim.type ? '✓' : ''}\n`;
+  });
+  
+  const choice = prompt(animationList + '\nWpisz numer animacji:');
+  const animIndex = parseInt(choice) - 1;
+  
+  if (animIndex >= 0 && animIndex < purchasedAnimations.length) {
+    currentAvatarAnimation = purchasedAnimations[animIndex].type;
+    localStorage.setItem('pentoAvatarAnimation', currentAvatarAnimation);
+    updateAvatar();
+    alert(`Ustawiono animację: ${purchasedAnimations[animIndex].name}`);
+  } else if (choice !== null) {
+    alert('Nieprawidłowy wybór!');
+  }
+}
+
 /* ---------------------- KOLEKCJA ---------------------- */
 function showCollection() {
   document.getElementById('mainMenu').style.display='none'; 
@@ -1349,6 +1433,7 @@ function showCollection() {
   document.getElementById('shopScreen').style.display='none';
   document.getElementById('inventory').style.display='none';
   document.getElementById('eventShopScreen').style.display='none';
+  backButton.style.display = 'block';
   
   renderCollection();
 }
@@ -1554,6 +1639,7 @@ function showEventShop() {
   document.getElementById('shopScreen').style.display='none';
   document.getElementById('inventory').style.display='none';
   document.getElementById('collectionScreen').style.display='none';
+  backButton.style.display = 'block';
   
   renderEventShop();
 }
@@ -1565,6 +1651,9 @@ function renderEventShop() {
   avatarAnimations.forEach(anim => {
     const itemEl = document.createElement('div');
     itemEl.className = 'event-shop-item';
+    
+    // Sprawdź czy animacja jest już zakupiona
+    const isPurchased = localStorage.getItem(`pentoAnimation_${anim.type}`) === 'purchased';
     
     // Tworzymy podgląd animacji
     const preview = document.createElement('div');
@@ -1602,9 +1691,12 @@ function renderEventShop() {
     itemEl.innerHTML = `
       ${preview.outerHTML}
       <div class="event-shop-item-name">${anim.name}</div>
-      <div class="event-shop-item-price">${anim.price.toLocaleString()} punktów</div>
+      <div class="event-shop-item-price">${isPurchased ? 'ZAKUPIONO' : anim.price.toLocaleString() + ' punktów'}</div>
       <div class="event-shop-item-preview">${anim.description}</div>
-      <button class="btn-big" onclick="buyAvatarAnimation('${anim.type}', ${anim.id})" style="padding:8px 16px;font-size:14px;background:#ffcc00;color:#000;margin-top:8px;" ${eventPoints < anim.price ? 'disabled style="background:#666;"' : ''}>KUP ANIMACJĘ</button>
+      ${isPurchased ? 
+        `<button class="btn-big" onclick="setAvatarAnimation('${anim.type}')" style="padding:8px 16px;font-size:14px;background:#00cc66;color:#000;margin-top:8px;" ${currentAvatarAnimation === anim.type ? 'disabled style="background:#666;"' : ''}>${currentAvatarAnimation === anim.type ? 'AKTYWNA' : 'AKTYWUJ'}</button>` :
+        `<button class="btn-big" onclick="buyAvatarAnimation('${anim.type}', ${anim.id})" style="padding:8px 16px;font-size:14px;background:#ffcc00;color:#000;margin-top:8px;" ${eventPoints < anim.price ? 'disabled style="background:#666;"' : ''}>KUP ANIMACJĘ</button>`
+      }
       ${currentAvatarAnimation === anim.type ? '<div style="color:#0f0;margin-top:5px;font-size:12px;">✓ AKTYWNA</div>' : ''}
     `;
     container.appendChild(itemEl);
@@ -1622,13 +1714,25 @@ function buyAvatarAnimation(animType, animId) {
   
   if (confirm(`Czy na pewno chcesz kupić animację "${anim.name}" za ${anim.price} punktów?\n\nAnimacja będzie wyświetlana jako tło pod twoim awatarem.`)) {
     eventPoints -= anim.price;
+    // Oznacz animację jako zakupioną
+    localStorage.setItem(`pentoAnimation_${animType}`, 'purchased');
+    // Automatycznie ustaw jako aktywną
     currentAvatarAnimation = animType;
     localStorage.setItem('pentoAvatarAnimation', currentAvatarAnimation);
+    
     updateEventPoints();
     updateAvatar();
     renderEventShop();
     alert(`Kupiłeś animację: ${anim.name}! Teraz będzie wyświetlana pod twoim awatarem.`);
   }
+}
+
+function setAvatarAnimation(animType) {
+  currentAvatarAnimation = animType;
+  localStorage.setItem('pentoAvatarAnimation', currentAvatarAnimation);
+  updateAvatar();
+  renderEventShop();
+  alert('Zmieniono aktywną animację awatara!');
 }
 
 /* ---------------------- SKLEP ---------------------- */
@@ -1696,6 +1800,7 @@ function showInventory() {
   document.getElementById('shopScreen').style.display='none';
   document.getElementById('eventShopScreen').style.display='none';
   document.getElementById('collectionScreen').style.display='none';
+  backButton.style.display = 'block';
   renderInventory();
 }
 
@@ -1898,6 +2003,7 @@ function showCases(){
   document.getElementById('inventory').style.display='none';
   document.getElementById('eventShopScreen').style.display='none';
   document.getElementById('collectionScreen').style.display='none';
+  backButton.style.display = 'block';
 }
 function showBattle(){ 
   document.getElementById('mainMenu').style.display='none'; 
@@ -1914,6 +2020,7 @@ function showBattle(){
   canStartBattle = true;
   document.getElementById('startBattleBtn').disabled = false;
   updateBattleInfo();
+  backButton.style.display = 'block';
 }
 function showShop(){ 
   document.getElementById('mainMenu').style.display='none'; 
@@ -1924,6 +2031,7 @@ function showShop(){
   document.getElementById('eventShopScreen').style.display='none';
   document.getElementById('collectionScreen').style.display='none';
   renderShop();
+  backButton.style.display = 'block';
 }
 function backToMenu(){ 
   document.getElementById('casesScreen').style.display='none'; 
@@ -1933,6 +2041,7 @@ function backToMenu(){
   document.getElementById('eventShopScreen').style.display='none';
   document.getElementById('collectionScreen').style.display='none';
   document.getElementById('mainMenu').style.display='block'; 
+  backButton.style.display = 'none';
 }
 
 /* ---------------------- OTWIERANIE POJEDYNCZE ---------------------- */
@@ -2173,6 +2282,15 @@ renderBattleUI();
 updateAvatar();
 updateLevelDisplay();
 updateToggleButton();
+
+// Dodajemy możliwość zmiany animacji przez kliknięcie na awatar
+document.getElementById('avatar').addEventListener('click', function(e) {
+  if (e.altKey) { // Alt + kliknięcie na awatar otwiera menu zmiany animacji
+    changeAvatarAnimation();
+  } else {
+    changeAvatar();
+  }
+});
 </script>
 </body>
 </html>
