@@ -103,7 +103,7 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
   overflow: hidden;
 }
 
-/* 1. Animacja ognistej aury */
+/* 1. Animacja ognistej aura */
 .fire-aura {
   background: linear-gradient(45deg, #ff3300, #ff6600, #ff3300);
   animation: firePulse 2s infinite, fireRotate 4s infinite linear;
@@ -655,6 +655,7 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 /* inventory */
 #inventory {
   padding: 30px;
+  display: none;
 }
 
 .inv-item {
@@ -1105,6 +1106,7 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     <div class="case-card" onclick="openCase(1)"><img src="https://i.postimg.cc/8zjR0TkZ/sdfsdfdfssdfsdf-Photoroom.png"><div class="case-name">PENTO-CASE</div><div class="case-price">DARMOWA</div></div>
     <div class="case-card" onclick="openCase(2)"><img src="https://i.postimg.cc/tR3XQ6vB/Zrzut-ekranu-2025-11-19-214235-removebg-preview.png"><div class="case-name">DYCHA CASE</div><div class="case-price">1000 zł</div></div>
     <div class="case-card" onclick="openCase(3)"><img src="https://i.postimg.cc/G2Ty8xTk/dddddddd-removebg-preview.png"><div class="case-name">LEGEND CASE</div><div class="case-price">5000 zł</div></div>
+    <div class="case-card" onclick="openCase(5)"><img src="https://i.postimg.cc/kM09QYFF/4-shoty-kamikaze.png"><div class="case-name">KAMIKAZE CASE</div><div class="case-price">10000 zł</div></div>
     <div class="case-card" onclick="openCase(4)"><img src="https://i.postimg.cc/1tkMv4yZ/Zrzut-ekranu-2025-11-25-144511-removebg-preview.png"><div class="case-name">RASZEI CASE</div><div class="case-price">20000 zł</div></div>
   </div>
 
@@ -1130,6 +1132,7 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(1)"><img src="https://i.postimg.cc/8zjR0TkZ/sdfsdfdfssdfsdf-Photoroom.png"><div class="case-name">PENTO-CASE</div></div>
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(2)"><img src="https://i.postimg.cc/tR3XQ6vB/Zrzut-ekranu-2025-11-19-214235-removebg-preview.png"><div class="case-name">DYCHA CASE</div></div>
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(3)"><img src="https://i.postimg.cc/G2Ty8xTk/dddddddd-removebg-preview.png"><div class="case-name">LEGEND CASE</div></div>
+    <div class="case-card" style="display:inline-block" onclick="battleAddCase(5)"><img src="https://i.postimg.cc/kM09QYFF/4-shoty-kamikaze.png"><div class="case-name">KAMIKAZE CASE</div></div>
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(4)"><img src="https://i.postimg.cc/1tkMv4yZ/Zrzut-ekranu-2025-11-25-144511-removebg-preview.png"><div class="case-name">RASZEI CASE</div></div>
   </div>
 
@@ -1732,7 +1735,7 @@ function setAvatarAnimation(animType) {
   localStorage.setItem('pentoAvatarAnimation', currentAvatarAnimation);
   updateAvatar();
   renderEventShop();
-  alert('Zmieniono aktywną animację awatara!');
+    alert('Zmieniono aktywną animację awatara!');
 }
 
 /* ---------------------- SKLEP ---------------------- */
@@ -1746,7 +1749,7 @@ const shopItems = [
   { id: 7, name: "Hydrophonica", price: 40000, img: "https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiNW0PCvZaZiL8-ZG2mXzetJvOhuRz39lk0m4Dncztz7Jy2fagIoC5t5QeNbskW6xNLgZu-24AXZgt4Xyi_4izQJsHjOr8RS6A/360fx360f" },
   { id: 8, name: "Golden Arabeska", price: 30000, img: "https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwlcK3wiVI0POlPPNSJ_-fCliR0-90tfJ4WiyMmBgjuiiI1Nn4cXjEbwMlDsR4RrVfsRK4wdPgPrjh4wKNg49Cyn__2iNI6ihi5O8cEf1yNgAZ7yU/330x192?allow_animated=1" },
   { id: 9, name: "Hydra", price: 20000, img: "https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf-jFk7uW-V6x0JOKSMWuZxuZi_uA7Syu2w0Ry4mqGzYypeH3DaAEnCpt0FuAK4RjrkoDgMb7mtFfcit5bjXKpX4RFZcA/360fx360f" },
-  { id: 10, name: "Butterfly Lore", price: 10000, img: "https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Z-ua6bbZrLOmsDXKvw_tipOR7SSWqqhEooTi6l4r9KD7KcAYnC5V5EbEItxDqwdDhYurntQOKgoJGmHmoiXlN5yw9tb4CV_cn8qDJz1aWe-z5ekc/360fx360f" }
+  { id: 10, name: "Butterfly Lore", price: 10000, img: "https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIijyEKzb_3d19nuN3mZ6kVKpNa6vgjlRByknJOw-CEK7KP_bPZrefPGVmSTk7py4bY8Tivlx0Vw4z_SzsHpLyyu3lGzoA/330x192" }
 ];
 
 function renderShop() {
@@ -1791,153 +1794,6 @@ function buyItem(itemId) {
   alert(`Kupiłeś: ${item.name} za ${item.price.toLocaleString()} zł!`);
 }
 
-/* ---------------------- EKWIPUNEK ---------------------- */
-function showInventory() {
-  document.getElementById('mainMenu').style.display='none'; 
-  document.getElementById('inventory').style.display='block'; 
-  document.getElementById('casesScreen').style.display='none';
-  document.getElementById('battleScreen').style.display='none';
-  document.getElementById('shopScreen').style.display='none';
-  document.getElementById('eventShopScreen').style.display='none';
-  document.getElementById('collectionScreen').style.display='none';
-  backButton.style.display = 'block';
-  renderInventory();
-}
-
-function renderInventory(){
-  const el = document.getElementById('inventoryItems'); 
-  el.innerHTML = inventory.length===0 ? '<p style="color:#666">Ekwipunek pusty</p>' : '';
-  
-  // Sortowanie jeśli jest ustawione
-  let sortedInventory = [...inventory];
-  if (inventorySortOrder === 'asc') {
-    sortedInventory.sort((a, b) => (a.price || 0) - (b.price || 0));
-  } else if (inventorySortOrder === 'desc') {
-    sortedInventory.sort((a, b) => (b.price || 0) - (a.price || 0));
-  }
-  
-  sortedInventory.forEach((it,i)=>{
-    const originalIndex = inventory.indexOf(it);
-    const d=document.createElement('div'); 
-    d.className='inv-item' + (it.locked ? ' locked' : ''); 
-    d.style.cssText='display:inline-block;width:190px;margin:12px;padding:10px;background:#111;border-radius:10px;border:1px solid #333;';
-    
-    let chanceText = '';
-    for (const caseId in cases) {
-      const skin = cases[caseId].skins.find(s => s.name === it.name);
-      if (skin) {
-        chanceText = `${skin.chance}%`;
-        break;
-      }
-    }
-    
-    d.innerHTML = `
-      <img src="${it.img}">
-      ${chanceText ? `<div class="inv-item-chance">${chanceText}</div>` : ''}
-      <div class="inv-item-lock" onclick="toggleLock(${originalIndex})">${it.locked ? '🔒' : '🔓'}</div>
-      <div style="font-weight:700;margin-top:8px">${it.name}</div>
-      <div style="color:#0f0">${it.price?.toLocaleString()||0} zł</div>
-      <button style="margin-top:8px;padding:8px;border-radius:8px;background:#ff3399;border:none;cursor:pointer" onclick="sellItem(${originalIndex})" ${it.locked ? 'disabled style="background:#666;"' : ''}>SPRZEDAJ</button>
-    `;
-    el.appendChild(d);
-  });
-}
-
-function sortInventory(order) {
-  inventorySortOrder = order;
-  
-  // Aktualizacja przycisków
-  document.getElementById('sortDesc').classList.toggle('active', order === 'desc');
-  
-  renderInventory();
-}
-
-function toggleLock(index) {
-  if (index >= 0 && index < inventory.length) {
-    inventory[index].locked = !inventory[index].locked;
-    localStorage.setItem('pentoInventory', JSON.stringify(inventory));
-    renderInventory();
-    updateToggleButton();
-  }
-}
-
-function toggleAllLocks() {
-  const allLocked = inventory.every(item => item.locked);
-  const allUnlocked = inventory.every(item => !item.locked);
-  
-  // Jeśli wszystkie są odblokowane, zablokuj wszystkie
-  // Jeśli wszystkie są zablokowane, odblokuj wszystkie
-  // W przeciwnym razie odblokuj wszystkie
-  const newLockState = allUnlocked ? true : false;
-  
-  inventory.forEach(item => {
-    item.locked = newLockState;
-  });
-  
-  localStorage.setItem('pentoInventory', JSON.stringify(inventory));
-  renderInventory();
-  updateToggleButton();
-}
-
-function updateToggleButton() {
-  const allLocked = inventory.every(item => item.locked);
-  const btn = document.getElementById('toggleLocksBtn');
-  btn.textContent = allLocked ? 'ODBLOKUJ WSZYSTKIE' : 'ZABLOKUJ WSZYSTKIE';
-}
-
-function sellItem(index) {
-  if (index >= 0 && index < inventory.length) {
-    const item = inventory[index];
-    if (item.locked) {
-      alert('Ten przedmiot jest zablokowany! Odblokuj go przed sprzedażą.');
-      return;
-    }
-    
-    balance += item.price || 0;
-    inventory.splice(index, 1);
-    localStorage.setItem('pentoInventory', JSON.stringify(inventory));
-    updateBalance();
-    renderInventory();
-    
-    if (currentAvatar === item.img) {
-      currentAvatar = null;
-      localStorage.setItem('pentoAvatar', null);
-      updateAvatar();
-    }
-  }
-}
-
-function sellAllUnlockedItems() {
-  const unlockedItems = inventory.filter(item => !item.locked);
-  
-  if (unlockedItems.length === 0) {
-    alert('Brak odblokowanych przedmiotów do sprzedaży!');
-    return;
-  }
-  
-  const totalValue = unlockedItems.reduce((sum, item) => sum + (item.price || 0), 0);
-  if (confirm(`Czy na pewno chcesz sprzedać wszystkie odblokowane przedmioty (${unlockedItems.length}) za ${totalValue.toLocaleString()} zł?`)) {
-    // Usuń odblokowane przedmioty z ekwipunku
-    inventory = inventory.filter(item => item.locked);
-    
-    balance += totalValue;
-    localStorage.setItem('pentoInventory', JSON.stringify(inventory));
-    updateBalance();
-    renderInventory();
-    
-    // Sprawdź czy aktualny awatar nie został sprzedany
-    if (currentAvatar && !inventory.some(item => item.img === currentAvatar)) {
-      currentAvatar = null;
-      localStorage.setItem('pentoAvatar', null);
-      updateAvatar();
-    }
-    
-    alert(`Sprzedano ${unlockedItems.length} przedmiotów za ${totalValue.toLocaleString()} zł!`);
-  }
-}
-
-window.sellItem = sellItem;
-
 /* ---------------------- SKRZYNKI I SKINY ---------------------- */
 const cases = {
   1: { name:'PENTO-CASE', cost:0, img:'https://i.postimg.cc/8zjR0TkZ/sdfsdfdfssdfsdf-Photoroom.png', skins:[
@@ -1973,6 +1829,18 @@ const cases = {
       {name:'Kyousuke', chance:15, basePrice:5000, img:'https://img-cdn.hltv.org/playerbodyshot/_s6UUQ4E92xw1uSWWCafsK.png?ixlib=java-2.1.0&w=400&s=d94a122aa9a8ec89f0727656b69e2415'},
       {name:'Snax', chance:20, basePrice:4000, img:'https://img-cdn.hltv.org/playerbodyshot/PCtBkxFzx6KVhnaGxgVoQa.png?ixlib=java-2.1.0&w=400&s=f0b074cfa6e7dfb5cbf439b5fdd8e08b'},
       {name:'SzeliS', chance:25, basePrice:2137, img:'https://i.postimg.cc/x8tNTZ7y/bvbvbvbvbvbvbvvvvbvbv.png'}
+  ]},
+  5: { name:'KAMIKAZE CASE', cost:10000, img:'https://i.postimg.cc/kM09QYFF/4-shoty-kamikaze.png', skins:[
+      {name:'Butterfly Sapphire', chance:1, basePrice:290000, img:'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpovbSsLQJf0ebcZThQ6tCvq4GGqOT1I6vZn3lU18hwmOvN8IXvjVCLqSwwOj6rYJiTdQE7NQuEqFS7x7q9hpHovZrPmnpq6HJ24XmJzUDjgBpOarBug_fKVxzAUBpccViW'},
+      {name:'M9 Sapphire', chance:3, basePrice:150000, img:'https://cs.money/assets/rs:fit:140:105:0/q:100/f:webp/dpr:2/plain/https://steamcommunity-a.akamaihd.net/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Wts2sab1iLvWHMWad_up5oPFlSjuMhRUmoDjWpYPwJiPTcFBzDcQhFuJf4BiwmtzmP7iw5QXc3YsUzn6oiikauCg44uoEAqQl_6bJz1aWfAW50lg'},
+      {name:'AWP Medusa', chance:4, basePrice:50000, img:'https://steamcommunity-a.akamaihd.net/economy/image/-9a81dlWLwJ2UUGcVs_nsVtzdOEdtWwKGZZLQHTxDZ7I56KU0Zwwo4NUX4oFJZEHLbXH5ApeO4YmlhxYQknCRvCo04DEVlxkKgpot621FAR17P7NdShR7eO3g5C0m_7zO6-fxj5SvsMkib-W9N7zilLjr0NoYW_wI4OTelRvYwmC-FTrxeq915a074OJlyVOUzvCjQ'},
+      {name:'Gloves Amphibious', chance:5, basePrice:40000, img:'https://community.akamai.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Tk5UvzWCL2kpn2-DFk_OKherB0H-CcB3Sfz9Fwou5ucCu_gBgYpDWMjorGLC7DN0N9FJZyFrNe5hm8lNzmP-u05wHfjN8UmCX6hiJM5i06sugLAvcnqaKEj1vfcepqZ8GDv-w/330x192?allow_animated=1'},
+      {name:'Talon Sapphire', chance:10, basePrice:10000, img:'https://skinbaron.de/steamdatadefault/apps/730/icons/econ/default_generated/weapon_knife_widowmaker_am_sapphire_marbleized_light_large.83a9aa7abffc20bde9d27ca616ebb9b485be7b75.png'},
+      {name:'Cobalt Skulls', chance:10, basePrice:8500, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu4vx603vRA_Olpfu-TVJ7uK9V6xsLvSEHGaA_uJzsfVhSjuqqhsmsS-MmbD7LT7CAUV7T84sBohX50Th14n5Yb6zswCP2N9NmySt2iNKvyw65O0LWKIn__WB2l3FObc-6JEHcfejTgPOBksTwoxH2w/360fx360f'},
+      {name:'Stiletto Sapphire', chance:10, basePrice:7500, img:'https://skinbaron.de/steamdatadefault/apps/730/icons/econ/default_generated/weapon_knife_stiletto_am_sapphire_marbleized_light_large.3576bab97db4e79a0c125f861a454a0c7abe8322.png'},
+      {name:'Shadow Daggers Doppler', chance:18, basePrice:5000, img:'https://steamcommunity-a.akamaihd.net/economy/image/class/730/2245432321'},
+      {name:'Gut Bright Water', chance:20, basePrice:700, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRYL1SL_OWD2mvyuB_tuRWQyC0nQlp4TiDntmtIiqeblAmDsB2QLMNukSxwNDkZOrg4wbajItNzXn4in9LvDErvbi4dh8COQ/330x192?allow_animated=1'},
+      {name:'M4A1-S Nightmare', chance:17, basePrice:200, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGMWrEwL9lj-9gSCGnmBw1tgKIn4vwNCaJaAJ1WZNwE-Rft0G8kIKyNui24lPcjoNFn3n3iCtMuHo447tWVfcjqbqX0V8N9uh_hA/360fx360f'}
   ]},
   4: { name:'RASZEI CASE', cost:20000, img:'https://i.postimg.cc/1tkMv4yZ/Zrzut-ekranu-2025-11-25-144511-removebg-preview.png', skins:[
       // RZADKIE SKINY - WYSOKIE CENY
@@ -2032,6 +1900,17 @@ function showShop(){
   document.getElementById('collectionScreen').style.display='none';
   renderShop();
   backButton.style.display = 'block';
+}
+function showInventory(){ 
+  document.getElementById('mainMenu').style.display='none'; 
+  document.getElementById('inventory').style.display='block'; 
+  document.getElementById('casesScreen').style.display='none';
+  document.getElementById('battleScreen').style.display='none';
+  document.getElementById('shopScreen').style.display='none';
+  document.getElementById('eventShopScreen').style.display='none';
+  document.getElementById('collectionScreen').style.display='none';
+  backButton.style.display = 'block';
+  renderInventory();
 }
 function backToMenu(){ 
   document.getElementById('casesScreen').style.display='none'; 
@@ -2263,6 +2142,116 @@ function startBattle(){
   playRoundsAsync();
 }
 
+/* ---------------------- EKWIPUNEK ---------------------- */
+function renderInventory(){
+  const el = document.getElementById('inventoryItems'); 
+  el.innerHTML = inventory.length===0 ? '<p style="color:#666">Ekwipunek pusty</p>' : '';
+  
+  // Sortowanie jeśli jest ustawione
+  let sortedInventory = [...inventory];
+  if (inventorySortOrder === 'asc') {
+    sortedInventory.sort((a, b) => (a.price || 0) - (b.price || 0));
+  } else if (inventorySortOrder === 'desc') {
+    sortedInventory.sort((a, b) => (b.price || 0) - (a.price || 0));
+  }
+  
+  sortedInventory.forEach((it,i)=>{
+    const originalIndex = inventory.indexOf(it);
+    const d=document.createElement('div'); 
+    d.className='inv-item' + (it.locked ? ' locked' : ''); 
+    d.style.cssText='display:inline-block;width:190px;margin:12px;padding:10px;background:#111;border-radius:10px;border:1px solid #333;';
+    
+    let chanceText = '';
+    for (const caseId in cases) {
+      const skin = cases[caseId].skins.find(s => s.name === it.name);
+      if (skin) {
+        chanceText = `${skin.chance}%`;
+        break;
+      }
+    }
+    
+    d.innerHTML = `
+      <img src="${it.img}">
+      ${chanceText ? `<div class="inv-item-chance">${chanceText}</div>` : ''}
+      <div class="inv-item-lock" onclick="toggleLock(${originalIndex})">${it.locked ? '🔒' : '🔓'}</div>
+      <div style="font-weight:700;margin-top:8px">${it.name}</div>
+      <div style="color:#0f0">${it.price?.toLocaleString()||0} zł</div>
+      <button style="margin-top:8px;padding:8px;border-radius:8px;background:#ff3399;border:none;cursor:pointer" onclick="sellItem(${originalIndex})" ${it.locked ? 'disabled style="background:#666;"' : ''}>SPRZEDAJ</button>
+    `;
+    el.appendChild(d);
+  });
+}
+
+function sortInventory(order) {
+  inventorySortOrder = order;
+  
+  // Aktualizacja przycisków
+  document.getElementById('sortDesc').classList.toggle('active', order === 'desc');
+  
+  renderInventory();
+}
+
+function toggleLock(index) {
+  if (index >= 0 && index < inventory.length) {
+    inventory[index].locked = !inventory[index].locked;
+    localStorage.setItem('pentoInventory', JSON.stringify(inventory));
+    renderInventory();
+  }
+}
+
+function sellItem(index) {
+  if (index >= 0 && index < inventory.length) {
+    const item = inventory[index];
+    if (item.locked) {
+      alert('Ten przedmiot jest zablokowany! Odblokuj go przed sprzedażą.');
+      return;
+    }
+    
+    balance += item.price || 0;
+    inventory.splice(index, 1);
+    localStorage.setItem('pentoInventory', JSON.stringify(inventory));
+    updateBalance();
+    renderInventory();
+    
+    if (currentAvatar === item.img) {
+      currentAvatar = null;
+      localStorage.setItem('pentoAvatar', null);
+      updateAvatar();
+    }
+  }
+}
+
+function sellAllUnlockedItems() {
+  const unlockedItems = inventory.filter(item => !item.locked);
+  
+  if (unlockedItems.length === 0) {
+    alert('Brak odblokowanych przedmiotów do sprzedaży!');
+    return;
+  }
+  
+  const totalValue = unlockedItems.reduce((sum, item) => sum + (item.price || 0), 0);
+  if (confirm(`Czy na pewno chcesz sprzedać wszystkie odblokowane przedmioty (${unlockedItems.length}) za ${totalValue.toLocaleString()} zł?`)) {
+    // Usuń odblokowane przedmioty z ekwipunku
+    inventory = inventory.filter(item => item.locked);
+    
+    balance += totalValue;
+    localStorage.setItem('pentoInventory', JSON.stringify(inventory));
+    updateBalance();
+    renderInventory();
+    
+    // Sprawdź czy aktualny awatar nie został sprzedany
+    if (currentAvatar && !inventory.some(item => item.img === currentAvatar)) {
+      currentAvatar = null;
+      localStorage.setItem('pentoAvatar', null);
+      updateAvatar();
+    }
+    
+    alert(`Sprzedano ${unlockedItems.length} przedmiotów za ${totalValue.toLocaleString()} zł!`);
+  }
+}
+
+window.sellItem = sellItem;
+
 /* ---------------------- UTILS ---------------------- */
 function weightedRandom(arr){
   const total = arr.reduce((a,b)=>a+b.chance,0);
@@ -2281,7 +2270,6 @@ battleSetBots(1);
 renderBattleUI();
 updateAvatar();
 updateLevelDisplay();
-updateToggleButton();
 
 // Dodajemy możliwość zmiany animacji przez kliknięcie na awatar
 document.getElementById('avatar').addEventListener('click', function(e) {
@@ -2294,4 +2282,3 @@ document.getElementById('avatar').addEventListener('click', function(e) {
 </script>
 </body>
 </html>
-
