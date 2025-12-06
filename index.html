@@ -412,6 +412,147 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
   text-align: center;
 }
 
+/* Tabela rankingowa - TYLKO W MENU GŁÓWNYM */
+#mainMenu .leaderboard {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  width: 280px;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 12px;
+  border: 2px solid #444;
+  padding: 15px;
+  backdrop-filter: blur(10px);
+  z-index: 998;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#mainMenu .leaderboard h3 {
+  margin: 0 0 15px 0;
+  color: #ff3399;
+  text-align: center;
+  font-size: 18px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 8px;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard-table th {
+  text-align: left;
+  color: #ccc;
+  font-size: 12px;
+  padding: 5px;
+  border-bottom: 1px solid #333;
+}
+
+.leaderboard-table td {
+  padding: 8px 5px;
+  border-bottom: 1px solid #222;
+  font-size: 14px;
+}
+
+.leaderboard-table tr:nth-child(1) td {
+  background: linear-gradient(90deg, rgba(255, 215, 0, 0.1), transparent);
+  border: 2px solid gold;
+  color: gold;
+  font-weight: bold;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+  border-radius: 6px;
+}
+
+.leaderboard-table tr:nth-child(2) td {
+  background: linear-gradient(90deg, rgba(192, 192, 192, 0.1), transparent);
+  border: 2px solid silver;
+  color: silver;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.2);
+  border-radius: 6px;
+}
+
+.leaderboard-table tr:nth-child(3) td {
+  background: linear-gradient(90deg, rgba(205, 127, 50, 0.1), transparent);
+  border: 2px solid #cd7f32;
+  color: #cd7f32;
+  font-weight: bold;
+  box-shadow: 0 0 8px rgba(205, 127, 50, 0.2);
+  border-radius: 6px;
+}
+
+.leaderboard-table tr:hover td {
+  background: rgba(255, 51, 153, 0.1);
+}
+
+.rank {
+  font-weight: bold;
+  text-align: center;
+  width: 30px;
+}
+
+.player-name {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.player-balance {
+  text-align: right;
+  color: #0f0;
+  font-weight: bold;
+}
+
+/* Formularz nicku - TYLKO W MENU GŁÓWNYM */
+#mainMenu .nickname-form {
+  position: fixed;
+  top: 80px;
+  right: 330px;
+  background: rgba(20, 20, 20, 0.95);
+  border-radius: 12px;
+  padding: 15px;
+  width: 250px;
+  backdrop-filter: blur(10px);
+  border: 2px solid #444;
+  z-index: 998;
+}
+
+.nickname-form h3 {
+  margin: 0 0 10px 0;
+  color: #ff3399;
+  font-size: 16px;
+}
+
+.nickname-form input {
+  width: 100%;
+  padding: 10px;
+  background: #222;
+  border: 2px solid #444;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.nickname-form button {
+  width: 100%;
+  padding: 10px;
+  background: #ff3399;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.nickname-form button:hover {
+  background: #ff66bb;
+}
+
 .btn-big {
   padding: 10px 22px;
   margin: 10px;
@@ -991,6 +1132,20 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     right: auto;
     margin: 10px;
   }
+  #mainMenu .leaderboard {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 90%;
+    margin: 20px auto;
+  }
+  #mainMenu .nickname-form {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 90%;
+    margin: 20px auto;
+  }
 }
 
 @media (max-width: 520px) {
@@ -1086,6 +1241,34 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
 </div>
 
 <div class="container" id="mainMenu">
+  <!-- Tabela rankingowa - TYLKO W MENU GŁÓWNYM -->
+  <div class="leaderboard" id="leaderboard">
+    <h3>TOP GRACZY</h3>
+    <table class="leaderboard-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>GRACZ</th>
+          <th>BALANS</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboardBody">
+        <tr><td>1</td><td class="player-name">Loading...</td><td class="player-balance">0 zł</td></tr>
+        <tr><td>2</td><td class="player-name">Loading...</td><td class="player-balance">0 zł</td></tr>
+        <tr><td>3</td><td class="player-name">Loading...</td><td class="player-balance">0 zł</td></tr>
+        <tr><td>4</td><td class="player-name">Loading...</td><td class="player-balance">0 zł</td></tr>
+        <tr><td>5</td><td class="player-name">Loading...</td><td class="player-balance">0 zł</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Formularz nicku - TYLKO W MENU GŁÓWNYM -->
+  <div class="nickname-form" id="nicknameForm" style="display: none;">
+    <h3>Wpisz swój nick</h3>
+    <input type="text" id="nicknameInput" placeholder="Twój nick" maxlength="20">
+    <button onclick="saveNickname()">ZAPISZ</button>
+  </div>
+
   <h1 style="font-size:36px;color:#ff3399;margin-bottom:8px">PENTO-CASE</h1>
   <div style="margin-bottom:16px">
     <button class="btn-big" onclick="showCases()">OTWÓRZ SKRZYNKĘ</button>
@@ -1107,6 +1290,7 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     <div class="case-card" onclick="openCase(2)"><img src="https://i.postimg.cc/tR3XQ6vB/Zrzut-ekranu-2025-11-19-214235-removebg-preview.png"><div class="case-name">DYCHA CASE</div><div class="case-price">1000 zł</div></div>
     <div class="case-card" onclick="openCase(3)"><img src="https://i.postimg.cc/G2Ty8xTk/dddddddd-removebg-preview.png"><div class="case-name">LEGEND CASE</div><div class="case-price">5000 zł</div></div>
     <div class="case-card" onclick="openCase(5)"><img src="https://i.postimg.cc/kM09QYFF/4-shoty-kamikaze.png"><div class="case-name">KAMIKAZE CASE</div><div class="case-price">10000 zł</div></div>
+    <div class="case-card" onclick="openCase(6)"><img src="https://i.postimg.cc/zv5krYL6/Zrzut-ekranu-2025-12-06-162421-removebg-preview.png"><div class="case-name">ALTERNATIVE CASE</div><div class="case-price">15000 zł</div></div>
     <div class="case-card" onclick="openCase(4)"><img src="https://i.postimg.cc/1tkMv4yZ/Zrzut-ekranu-2025-11-25-144511-removebg-preview.png"><div class="case-name">RASZEI CASE</div><div class="case-price">20000 zł</div></div>
   </div>
 
@@ -1133,6 +1317,7 @@ header {position:fixed; top:0; left:0; right:0; height:70px; background:rgba(0,0
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(2)"><img src="https://i.postimg.cc/tR3XQ6vB/Zrzut-ekranu-2025-11-19-214235-removebg-preview.png"><div class="case-name">DYCHA CASE</div></div>
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(3)"><img src="https://i.postimg.cc/G2Ty8xTk/dddddddd-removebg-preview.png"><div class="case-name">LEGEND CASE</div></div>
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(5)"><img src="https://i.postimg.cc/kM09QYFF/4-shoty-kamikaze.png"><div class="case-name">KAMIKAZE CASE</div></div>
+    <div class="case-card" style="display:inline-block" onclick="battleAddCase(6)"><img src="https://i.postimg.cc/zv5krYL6/Zrzut-ekranu-2025-12-06-162421-removebg-preview.png"><div class="case-name">ALTERNATIVE CASE</div></div>
     <div class="case-card" style="display:inline-block" onclick="battleAddCase(4)"><img src="https://i.postimg.cc/1tkMv4yZ/Zrzut-ekranu-2025-11-25-144511-removebg-preview.png"><div class="case-name">RASZEI CASE</div></div>
   </div>
 
@@ -1220,15 +1405,21 @@ let keys = parseInt(localStorage.getItem("pentoKeys")) || 0;
 let collection = JSON.parse(localStorage.getItem("pentoCollection")) || {};
 let canStartBattle = true;
 let inventorySortOrder = 'none'; // 'none', 'asc', 'desc'
+let playerNickname = localStorage.getItem("pentoNickname") || "";
+let playersRanking = JSON.parse(localStorage.getItem("pentoPlayersRanking")) || [];
 
 const balanceEl = document.getElementById('balance');
 const eventPointsEl = document.getElementById('eventPoints');
 const keysCountEl = document.getElementById('keysCount');
 const backButton = document.getElementById('backButton');
+const nicknameForm = document.getElementById('nicknameForm');
+const nicknameInput = document.getElementById('nicknameInput');
+const leaderboardBody = document.getElementById('leaderboardBody');
 
 function updateBalance(){ 
   balanceEl.textContent = balance.toLocaleString() + ' zł'; 
   localStorage.setItem('pentoBalance', balance); 
+  updatePlayerInRanking();
 }
 
 function updateEventPoints(){ 
@@ -1239,6 +1430,114 @@ function updateEventPoints(){
 function updateKeys(){ 
   keysCountEl.textContent = keys.toLocaleString(); 
   localStorage.setItem('pentoKeys', keys); 
+}
+
+/* ---------------------- SYSTEM RANKINGOWY ---------------------- */
+function initializeRanking() {
+  if (playersRanking.length === 0) {
+    // Domyślnie dodajemy przykładowych graczy
+    playersRanking = [
+      { nickname: "Gracz1", balance: 50000 },
+      { nickname: "Gracz2", balance: 25000 },
+      { nickname: "Gracz3", balance: 10000 },
+      { nickname: "Gracz4", balance: 7500 },
+      { nickname: "Gracz5", balance: 3000 }
+    ];
+    localStorage.setItem('pentoPlayersRanking', JSON.stringify(playersRanking));
+  }
+  
+  // Jeśli gracz ma nick, ale nie ma go w rankingu - dodajemy
+  if (playerNickname && !playersRanking.find(p => p.nickname === playerNickname)) {
+    playersRanking.push({ nickname: playerNickname, balance: balance });
+    localStorage.setItem('pentoPlayersRanking', JSON.stringify(playersRanking));
+  }
+  
+  renderLeaderboard();
+}
+
+function updatePlayerInRanking() {
+  if (!playerNickname) return;
+  
+  const playerIndex = playersRanking.findIndex(p => p.nickname === playerNickname);
+  
+  if (playerIndex !== -1) {
+    playersRanking[playerIndex].balance = balance;
+  } else {
+    playersRanking.push({ nickname: playerNickname, balance: balance });
+  }
+  
+  // Sortuj malejąco według balansu
+  playersRanking.sort((a, b) => b.balance - a.balance);
+  
+  // Zachowaj tylko top 50 graczy
+  playersRanking = playersRanking.slice(0, 50);
+  
+  localStorage.setItem('pentoPlayersRanking', JSON.stringify(playersRanking));
+  renderLeaderboard();
+}
+
+function renderLeaderboard() {
+  // Sortuj malejąco według balansu
+  const sortedPlayers = [...playersRanking].sort((a, b) => b.balance - a.balance);
+  
+  leaderboardBody.innerHTML = '';
+  
+  for (let i = 0; i < Math.min(5, sortedPlayers.length); i++) {
+    const player = sortedPlayers[i];
+    const row = document.createElement('tr');
+    
+    row.innerHTML = `
+      <td class="rank">${i + 1}</td>
+      <td class="player-name">${player.nickname}</td>
+      <td class="player-balance">${player.balance.toLocaleString()} zł</td>
+    `;
+    
+    leaderboardBody.appendChild(row);
+  }
+  
+  // Jeśli mniej niż 5 graczy, uzupełnij puste wiersze
+  for (let i = sortedPlayers.length; i < 5; i++) {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td class="rank">${i + 1}</td>
+      <td class="player-name">-</td>
+      <td class="player-balance">0 zł</td>
+    `;
+    leaderboardBody.appendChild(row);
+  }
+}
+
+function saveNickname() {
+  const nickname = nicknameInput.value.trim();
+  
+  if (!nickname) {
+    alert('Nick nie może być pusty!');
+    return;
+  }
+  
+  if (nickname.length < 3) {
+    alert('Nick musi mieć co najmniej 3 znaki!');
+    return;
+  }
+  
+  if (nickname.length > 20) {
+    alert('Nick może mieć maksymalnie 20 znaków!');
+    return;
+  }
+  
+  playerNickname = nickname;
+  localStorage.setItem('pentoNickname', playerNickname);
+  
+  // Dodaj gracza do rankingu
+  const existingPlayer = playersRanking.find(p => p.nickname === playerNickname);
+  if (!existingPlayer) {
+    playersRanking.push({ nickname: playerNickname, balance: balance });
+    localStorage.setItem('pentoPlayersRanking', JSON.stringify(playersRanking));
+  }
+  
+  nicknameForm.style.display = 'none';
+  updatePlayerInRanking();
+  alert(`Nick zapisany: ${playerNickname}`);
 }
 
 /* ---------------------- SYSTEM LEVELI ---------------------- */
@@ -1842,6 +2141,16 @@ const cases = {
       {name:'Gut Bright Water', chance:20, basePrice:700, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1c-uaRYL1SL_OWD2mvyuB_tuRWQyC0nQlp4TiDntmtIiqeblAmDsB2QLMNukSxwNDkZOrg4wbajItNzXn4in9LvDErvbi4dh8COQ/330x192?allow_animated=1'},
       {name:'M4A1-S Nightmare', chance:17, basePrice:200, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGMWrEwL9lj-9gSCGnmBw1tgKIn4vwNCaJaAJ1WZNwE-Rft0G8kIKyNui24lPcjoNFn3n3iCtMuHo447tWVfcjqbqX0V8N9uh_hA/360fx360f'}
   ]},
+  6: { name:'ALTERNATIVE CASE', cost:15000, img:'https://i.postimg.cc/zv5krYL6/Zrzut-ekranu-2025-12-06-162421-removebg-preview.png', skins:[
+      // Tutaj dodaj swoje linki do zdjęć gdy je będziesz miał
+      {name:'M4A1-S Printstream', chance:2, basePrice:80000, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL8ypexwjFS4_ega6F_H_OGMWrEwL9lj_F7Rienhgk1tjyIpYL8JSLSMxghAsBwQeMN5BHtlIblZuLr4Q3biNkRmH_5iX5Muypj47pWA6EsqPaGkUifZp-rQ1Ym/330x192?allow_animated=1'},
+      {name:'AWP Printstream', chance:4, basePrice:60000, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLwiYbf_DVL0OK8Yap5M-SBC2ad_uNztOh8QmexzUt1tj7UnN-vc3KWbw8nCpJzRrJY5xa8xNHuZOLr51bYjtkXyyj5kGoXuQMtNgKM/360fx360f'},
+      {name:'Karambit Black Laminate', chance:5, basePrice:40000, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL6kJ_m-B1Q7uCvZaZkNM-QG1ibwPx3vd56Wya9kAomoDW6l4r9KD7KcAdyCZcjEecDu0G7k4DlN-rlswfZjo5DyCSt2Cgf6ChssLsHUfEsrqLJz1aWM9kY8Bw/330x192?allow_animated=1'},
+      {name:'USP Whiteout', chance:8, basePrice:25000, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSM_-sGW-Z1et5pfVWXSCjgRQjtgKIn4vwNCaJOA4nDpNxRLENtEPukdXiNOrjtVHX2N4UmCuqj35KvHpt4r1WAqdwqbqX0V_BOP6tuQ/360fx360f'},
+      {name:'FAMAS Mecha Industries', chance:22, basePrice:8000, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyL3n5vh7h1c_M2oaalsM8-eC2SYwNF6ueZhW2ewwx4hsm3dz46heSjCPVUjC8chEOYMtxOwkNHiYb63swXY3Y9Nn32skGoXuc3DGOrc/360fx360f'},
+      {name:'USP Ticket to Hell', chance:22, basePrice:6000, img:'https://community.fastly.steamstatic.com/economy/image/i0CoZ81Ui0m-9KwlBY1L_18myuGuq1wfhWSaZgMttyVfPaERSR0Wqmu7LAocGIGz3UqlXOLrxM-vMGmW8VNxu5Dx60noTyLkjYbf7itX6vytbbZSI-WsG3SA_vp5j-lsQyWMmBgjuiiI1I6qdH6fbgAoApFyRrJf4xnumoDnM-7j41Pbgt8TyCT72CxK6SttsrscEf1y0Tw_DYE/360fx360f'},
+      {name:'Tec-9 Urban DDPT', chance:22, basePrice:5000, img:'https://steamcommunity-a.akamaihd.net/economy/image/class/730/469439091'}
+  ]},
   4: { name:'RASZEI CASE', cost:20000, img:'https://i.postimg.cc/1tkMv4yZ/Zrzut-ekranu-2025-11-25-144511-removebg-preview.png', skins:[
       // RZADKIE SKINY - WYSOKIE CENY
       {name:'Superconductor Gloves', chance:2, basePrice:180000, img:'https://cdn.tradeit.gg/csgo%2F%E2%98%85%20Sport%20Gloves%20-%20Superconductor%20(Factory%20New)_240x152.webp'},
@@ -2271,6 +2580,16 @@ renderBattleUI();
 updateAvatar();
 updateLevelDisplay();
 
+// Sprawdź czy gracz ma ustawiony nick
+if (!playerNickname) {
+  nicknameForm.style.display = 'block';
+} else {
+  nicknameForm.style.display = 'none';
+}
+
+// Inicjalizuj ranking
+initializeRanking();
+
 // Dodajemy możliwość zmiany animacji przez kliknięcie na awatar
 document.getElementById('avatar').addEventListener('click', function(e) {
   if (e.altKey) { // Alt + kliknięcie na awatar otwiera menu zmiany animacji
@@ -2282,4 +2601,3 @@ document.getElementById('avatar').addEventListener('click', function(e) {
 </script>
 </body>
 </html>
-
